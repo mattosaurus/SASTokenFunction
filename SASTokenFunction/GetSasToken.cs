@@ -21,7 +21,7 @@ namespace SASTokenFunction
         [FunctionName("GetSasToken")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
-            log.Info("C# HTTP trigger function processed a request.");
+            log.Info("GetSasToken recieved a request.");
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(context.FunctionAppDirectory)
@@ -34,6 +34,7 @@ namespace SASTokenFunction
 
             if (data.container == null)
             {
+                log.Error("No container value specified.");
                 return new BadRequestObjectResult("Specify value for 'container'");
             }
 
@@ -42,6 +43,7 @@ namespace SASTokenFunction
 
             if (!success)
             {
+                log.Error("Invalid permission values specified.");
                 return new BadRequestObjectResult("Invalid value for 'permissions'");
             }
 
@@ -54,6 +56,7 @@ namespace SASTokenFunction
                     GetBlobSasToken(container, data.blobName.ToString(), permissions) :
                     GetContainerSasToken(container, permissions);
 
+            log.Info("SAS token retrieved successfully.");
             return new OkObjectResult(new
             {
                 token = sasToken,
