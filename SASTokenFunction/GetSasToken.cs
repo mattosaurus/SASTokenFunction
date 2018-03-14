@@ -19,7 +19,7 @@ namespace SASTokenFunction
     public static class GetSasToken
     {
         [FunctionName("GetSasToken")]
-        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext context)
+        public static IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
             log.Info("C# HTTP trigger function processed a request.");
 
