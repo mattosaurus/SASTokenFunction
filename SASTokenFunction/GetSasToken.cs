@@ -8,11 +8,7 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net;
 using System;
-using System.Linq;
 
 namespace SASTokenFunction
 {
