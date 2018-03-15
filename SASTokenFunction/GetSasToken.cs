@@ -57,8 +57,7 @@ namespace SASTokenFunction
             {
                 token = sasToken,
                 uri = container.Uri + sasToken
-            }
-            );
+            });
         }
 
         public static string GetBlobSasToken(CloudBlobContainer container, string blobName, SharedAccessBlobPermissions permissions, string policyName = null)
